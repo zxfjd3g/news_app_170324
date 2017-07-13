@@ -1,5 +1,5 @@
-/*news_header组件*/
-  /*应用图标和名称*/
+/*header组件*/
+/*应用图标和名称*/
 .logo {
   align-items: center;
   display: flex;
@@ -12,6 +12,14 @@
   font-size: 24px;
   padding-left: 5px;
 }
-.regist {
-  float: right !important;
+
+
+/*水平导航*/
+.ant-menu-horizontal>.ant-menu-item>a, .ant-menu-horizontal>.ant-menu-submenu>a {
+  display: inline-block !important;
+}
+
+/*注册/登陆 menuItem*/
+.register {
+  float: right !important; /*优先级最高*/
 }

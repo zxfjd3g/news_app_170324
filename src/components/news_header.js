@@ -28,9 +28,9 @@ class NewsHeader extends Component {
     super(props)
     // 初始化状态
     this.state = {
-      username: null,
+      username: "abc",
       selectKey: 'shehui',
-      modalShow: true
+      modalShow: false
     }
   }
 
