@@ -12,8 +12,10 @@ import {
   Tabs, // 选项卡
   Form, //表单
   Input, //单行输入框
+  message, //用于提示的对象
 } from 'antd'
 import {Link} from 'react-router'
+import axios from 'axios'
 
 import logo from '../images/logo.png'
 
@@ -31,6 +33,14 @@ class NewsHeader extends Component {
       username: null,
       selectKey: 'shehui',
       modalShow: false
+    }
+  }
+
+  componentDidMount () {
+    // 读取浏览器本地保存的用户信息, 如果有值, 更新状态
+    const username = localStorage.getItem('username')
+    if(username) {
+      this.setState({username})
     }
   }
 
@@ -57,6 +67,70 @@ class NewsHeader extends Component {
     })
   }
 
+  logout = () => {
+    // 清除localStorage中存的数据
+    localStorage.removeItem('username')
+    // 更新状态: username
+    this.setState({username: null})
+  }
+
+  /*
+  处理登陆/注册的点击回调: 发送ajax请求
+   */
+  handleSubmit = (isRegist) => {
+    // alert(isRegist)
+
+    //1. 准备带参数的url
+      // http://newsapi.gugujiankong.com/Handler.ashx?action=register&r_userName=abc&r_password=123123&r_confirmPassword=123123
+      // http://newsapi.gugujiankong.com/Handler.ashx?action=login&username=zxfjd3g&password=123123
+    let url = 'http://newsapi.gugujiankong.com/Handler.ashx?'
+    const action = isRegist ? 'register' : 'login'
+    url += `action=${action}`
+    // 得到表单中所有的数据的集合对象
+    const formData = this.props.form.getFieldsValue()
+    if(isRegist) { // 注册
+      const {r_username, r_password, r_confirm_password} = formData
+      url += `&r_userName=${r_username}&r_password=${r_password}&r_confirmPassword=${r_confirm_password}`
+    } else { // 登陆
+      const {username, password} = formData
+      url += `&username=${username}&password=${password}`
+    }
+
+    //2. 发送ajax请求
+    axios.get(url)
+      .then(response => {
+        const result = response.data
+        //3. 请求结束, 作相应提示
+        if(isRegist) { // 注册
+          if(result===true) { // 成功
+            message.success('注册成功')
+          } else { // 失败
+            message.error('注册失败, 重新注册!!')
+          }
+        } else { // 登陆
+          if(result) { // 成功
+            message.success('登陆成功')
+            // 更新状态: username
+            const username = result.NickUserName
+            this.setState({username})
+            // 保存用户信息: username
+            localStorage.setItem('username', username)
+
+          } else {// 失败
+            message.error('登陆失败, 重新登陆!!')
+          }
+        }
+
+      })
+
+    // 关闭界面
+    this.setState({
+      modalShow: false
+    })
+    // 清空输入数据
+    this.props.form.resetFields()
+  }
+
   render () {
     const {selectKey, username, modalShow} = this.state
 
@@ -65,7 +139,7 @@ class NewsHeader extends Component {
           <MenuItem key="logout" className="regist">
             <Button type="primary">{username}</Button>&nbsp;
             <Link to="/usercenter"><Button type="dashed">个人中心</Button></Link>&nbsp;
-            <Button>退出</Button>
+            <Button onClick={this.logout}>退出</Button>
           </MenuItem>
         )
       : (
@@ -122,7 +196,7 @@ class NewsHeader extends Component {
                      okText="关闭">
                 <Tabs type="card">
                   <TabPane tab="登陆" key="1">
-                    <Form>
+                    <Form onSubmit={this.handleSubmit.bind(this, false)}>
                       <FormItem label="用户名">
                         {
                           getFieldDecorator('username')(
@@ -133,15 +207,15 @@ class NewsHeader extends Component {
                       <FormItem label="密码">
                         {
                           getFieldDecorator('password')(
-                            <Input type="text" placeholder="请输入密码" />
+                            <Input type="password" placeholder="请输入密码" />
                           )
                         }
                       </FormItem>
-                      <Button type="primary">登陆</Button>
+                      <Button type="primary" htmlType="submit">登陆</Button>
                     </Form>
                   </TabPane>
                   <TabPane tab="注册" key="2">
-                    <Form>
+                    <Form onSubmit={this.handleSubmit.bind(this, true)}>
                       <FormItem label="用户名">
                         {
                           getFieldDecorator('r_username')(
@@ -152,18 +226,18 @@ class NewsHeader extends Component {
                       <FormItem label="密码">
                         {
                           getFieldDecorator('r_password')(
-                            <Input type="text" placeholder="请输入密码" />
+                            <Input type="password" placeholder="请输入密码" />
                           )
                         }
                       </FormItem>
                       <FormItem label="确认密码">
                         {
                           getFieldDecorator('r_confirm_password')(
-                            <Input type="text" placeholder="请输入确认密码" />
+                            <Input type="password" placeholder="请输入确认密码" />
                           )
                         }
                       </FormItem>
-                      <Button type="primary">注册</Button>
+                      <Button type="primary" htmlType="submit">注册</Button>
                     </Form>
                   </TabPane>
                 </Tabs>
@@ -183,6 +257,7 @@ const FormNewsHeader =  Form.create()(NewsHeader)
 结果:
  this.props.form:
   getFieldDecorator(): 包装<Input>
+  getFieldsValue(): 返回包含所有输入框数据的集合对象
  */
 
 export default FormNewsHeader  // 向外暴露的必须是包装后的组件
