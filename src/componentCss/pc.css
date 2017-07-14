@@ -75,7 +75,7 @@
   height: 260px;
 }
 
-/*news_block*/
+/*news_block组件*/
 .topNewsList {
   float: left;
   text-align: left;
@@ -116,4 +116,15 @@
   float: left;
   line-height: 30px;
   margin-right: 5px;
+}
+
+/*news_image_block组件*/
+.imageblock {
+  float: left;
+}
+.custom-card {
+  padding: 5px;
+}
+.custom-card p {
+  color: #999;
 }

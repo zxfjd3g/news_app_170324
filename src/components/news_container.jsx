@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router'
 import {
   Row,
   Col,
@@ -9,6 +8,7 @@ import {
 
 import NewsBlock from './news_block'
 import NewsProducts from './news_products'
+import NewsImageBlock from './news_image_block'
 
 import carousel_1 from '../images/carousel_1.jpg'
 import carousel_2 from '../images/carousel_2.jpg'
@@ -42,6 +42,8 @@ export default class NewsContainer extends Component {
                   <img src={carousel_4}/>
                 </div>
               </Carousel>
+              <NewsImageBlock type="guoji" count={6} cardTitle="国际新闻"
+                              cardWidth="400px" imageWidth="112px"/>
             </div>
 
             <Tabs className='tabs_news' style={{width: "35%"}}>
@@ -58,6 +60,13 @@ export default class NewsContainer extends Component {
                 <NewsProducts />
               </TabPane>
             </Tabs>
+
+            <div>
+              <NewsImageBlock type="guonei" count={8} cardTitle="国内新闻"
+                              cardWidth="100%" imageWidth="132px"/>
+              <NewsImageBlock type="yule" count={16} cardTitle="娱乐新闻"
+                              cardWidth="100%" imageWidth="132px"/>
+            </div>
           </Col>
           <Col span={1}/>
         </Row>

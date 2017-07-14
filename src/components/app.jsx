@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import NewsHeader from './news_header'
+import NewsFooter from './news_footer'
 import '../componentCss/pc.css'
 
 /*
@@ -11,7 +12,7 @@ export default class App extends Component {
       <div>
         <NewsHeader />
         {this.props.children}
-        <div>footer component...</div>
+        <NewsFooter />
       </div>
     )
   }
