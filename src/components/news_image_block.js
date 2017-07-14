@@ -58,7 +58,7 @@ export default class NewsImageBlock extends Component {
       : newsArr.map((news, index) => {
           const {uniquekey, thumbnail_pic_s, title, author_name} = news
           return (
-            <div className="imageblock">
+            <div className="imageblock" key={index}>
               <Link to={`/detail/${uniquekey}`}>
                 <div>
                   <img src={thumbnail_pic_s} style={imgStyles}/>
