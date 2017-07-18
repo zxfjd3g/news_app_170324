@@ -128,3 +128,78 @@
 .custom-card p {
   color: #999;
 }
+
+/*news_detail组件*/
+.title,.article-title .title {
+  font-size: 25px !important;
+  line-height: 1.4em
+}
+.article-src-time {
+  font-size: 18px !important;
+}
+.article-content .txt {
+  font-size: 20px !important;
+}
+.article {
+  text-align: justify
+}
+.article-content .img .img-wrap,.hot-news img {
+  background-repeat: no-repeat;
+  background-position: center
+}
+.hn-title h2,.in-title h2 {
+  z-index: 1;
+  font-weight: 600
+}
+#title {
+  margin: 16px 16px 0!important;
+  border-bottom: 1px solid #e5e5e5
+}
+.article-title {
+  margin-bottom: .2rem
+}
+#title .title,.article-title .title {
+  font-size: 1.44rem;
+  line-height: 1.4em
+}
+.title {
+  color: #000
+}
+.article-src-time {
+  font-size: 1rem;
+  color: #999;
+  padding-bottom: .2rem
+}
+.article-content .section {
+  line-height: 1.6em;
+  margin-bottom: .3rem;
+  margin-top: 0
+}
+.article-content .txt {
+  font-size: 1.36rem
+}
+.article-content .img {
+  margin-bottom: .3rem
+}
+.article-content .img .img-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  background-size: 40%
+}
+#content {
+  margin: .3rem 16px 16px
+}
+.article-content .img .img-wrap img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 60%
+}
+.article-content .img .txt-wrap {
+  font-size: .36rem;
+  line-height: 2em
+}

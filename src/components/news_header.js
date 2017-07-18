@@ -70,6 +70,7 @@ class NewsHeader extends Component {
   logout = () => {
     // 清除localStorage中存的数据
     localStorage.removeItem('username')
+    localStorage.removeItem('userId')
     // 更新状态: username
     this.setState({username: null})
   }
@@ -112,9 +113,11 @@ class NewsHeader extends Component {
             message.success('登陆成功')
             // 更新状态: username
             const username = result.NickUserName
+            const userId = result.UserId
             this.setState({username})
             // 保存用户信息: username
             localStorage.setItem('username', username)
+            localStorage.setItem('userId', userId)
 
           } else {// 失败
             message.error('登陆失败, 重新登陆!!')

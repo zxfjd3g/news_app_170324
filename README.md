@@ -42,9 +42,14 @@
   * 使用postman测试接口
   
 # day02
-
-
-
+  * 自定义组件: 
+    * news_container: 默认路由组件
+    * news_block: 文字新闻列表,  type/count
+    * news_image_block: 图片新闻列表, type/count/cardTitle/cardWidth/imageWidth
+  * antd组件
+    * <Row>, <Col>, <Button>, <Tabs>, <Card>
+  * 自适应
+    * 使用一个库来识别设备的尺寸: react-responsive
 
 
 
