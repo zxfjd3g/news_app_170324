@@ -23,8 +23,16 @@ export default class NewsDetail extends Component {
     }
   }
 
-  componentDidMount () {
-    const {uniqueKey} = this.props.params
+  componentDidMount () {  // 初始化显示
+    this.showNewsDetail(this.props)
+  }
+
+  componentWillReceiveProps (newProps) { // 切换新闻时自动调用
+    this.showNewsDetail(newProps)
+  }
+
+  showNewsDetail = (props) => {
+    const {uniqueKey} = props.params
     const url = `http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=${uniqueKey}`
     axios.get(url)
       .then(response => {
