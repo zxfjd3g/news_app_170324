@@ -8,6 +8,9 @@ import NewsDetail from './components/news_detail'
 import UserCenter from './components/user_center'
 
 import MobileApp from './components/mobile_app'
+import MobileNewsContainer from './components/mobile_news_container'
+import MobileNewsDetail from './components/mobile_news_detail'
+import MobileUserCenter from './components/mobile_user_center'
 
 render((
 
@@ -23,7 +26,11 @@ render((
     </MediaQuery>
     <MediaQuery query='(max-device-width: 1224px)'>
       <Router history={hashHistory}>
-        <Route path='/' components={MobileApp}></Route>
+        <Route path='/' component={MobileApp}>
+          <IndexRoute component={MobileNewsContainer} />
+          <Route path="/detail/:uniqueKey" component={MobileNewsDetail}/>
+          <Route path="/usercenter" component={MobileUserCenter}/>
+        </Route>
       </Router>
     </MediaQuery>
   </div>

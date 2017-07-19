@@ -52,7 +52,7 @@
     * 使用一个库来识别设备的尺寸: react-responsive
 
 # day03
-## 理解rest
+## 理解rest api
   * api接口的分类
     * restful: rest风格
     * restless: 非rest风格

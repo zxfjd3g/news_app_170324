@@ -1,8 +1,8 @@
 /*header组件*/
 /*应用图标和名称*/
 .logo {
-  align-items: center;
   display: flex;
+  align-items: center;
 }
 .logo img {
   width: 48px;
@@ -13,18 +13,12 @@
   padding-left: 5px;
 }
 
-
-/*水平导航*/
-.ant-menu-horizontal>.ant-menu-item>a, .ant-menu-horizontal>.ant-menu-submenu>a {
-  display: inline-block !important;
+/*注册|登陆 menuItem*/
+.register {
+  float: right !important; /*不能修改*/
 }
 
-/*注册/登陆 menuItem*/
-.regist {
-  float: right !important; /*优先级最高*/
-}
-
-/*news_container组件*/
+/*news_container/news_detail组件*/
 .container {
   text-align: center;
   padding-top: 10px;
@@ -33,6 +27,10 @@
 .leftContainer {
   width: 400px;
   float: left;
+}
+/*水平导航*/
+.ant-menu-horizontal>.ant-menu-item>a, .ant-menu-horizontal>.ant-menu-submenu>a {
+  display: inline-block !important;
 }
 /*新闻列表*/
 .tabs_news {
@@ -65,17 +63,27 @@
   width: 257px;
   text-overflow: ellipsis;
 }
+
 /*轮播图*/
-.ant-carousel {
+.leftContainer>.ant-carousel {
   width: 400px;
   float: left;
 }
-.ant-carousel img {
+.leftContainer>.ant-carousel img {
   width: 400px;
   height: 260px;
 }
 
-/*news_block组件*/
+/*image_block/news_block组件*/
+.imageblock {
+  float: left;
+}
+.custom-card {
+  padding: 5px;
+}
+.custom-card p {
+  color: #999;
+}
 .topNewsList {
   float: left;
   text-align: left;
@@ -99,34 +107,6 @@
 }
 .ant-tabs-bar {
   margin-bottom: 0 !important;
-}
-
-/*news_products组件*/
-.pro_bg {
-  background: #eeeeee;
-  margin-top: 10px;
-}
-
-.pro {
-  padding: 5px;
-  overflow: hidden;
-}
-
-.pro a {
-  float: left;
-  line-height: 30px;
-  margin-right: 5px;
-}
-
-/*news_image_block组件*/
-.imageblock {
-  float: left;
-}
-.custom-card {
-  padding: 5px;
-}
-.custom-card p {
-  color: #999;
 }
 
 /*news_detail组件*/
@@ -202,4 +182,19 @@
 .article-content .img .txt-wrap {
   font-size: .36rem;
   line-height: 2em
+}
+
+/*news_products组件*/
+.pro_bg{
+  background: #eeeeee;
+  margin-top: 10px;
+}
+.pro{
+  padding:5px;
+  overflow: hidden;
+}
+.pro a{
+  float: left;
+  line-height: 30px;
+  margin-right:5px;
 }
